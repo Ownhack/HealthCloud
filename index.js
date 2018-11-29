@@ -18,7 +18,7 @@ function createNewClient() {
         user: 'postgres',
         host: 'localhost',
         database: 'my_database',
-        password: '12345',
+        password: '43926',
         port: 5432
     });
 }
