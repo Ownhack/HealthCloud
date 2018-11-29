@@ -5,6 +5,8 @@ let express = require("express");
 let app = express();
 let pg = require('pg');
 
+let health_alert_flag = false;
+
 // Разрешаем междоменные запросы
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -93,8 +95,26 @@ app.post('/add_one_record', (request, response) => {
     });
 });
 
+app.post('/set_health_alert', (req, res) => {
+    console.log('setting health alert');
+    health_alert_flag = true;
+
+    res.end();
+});
+
+app.post('/reset_health_alert', (req, res) => {
+    console.log('resetting health alert');
+    health_alert_flag = false;
+
+    res.end();
+});
+
+app.get('/get_health_alert', (req, res) => {
+    console.log('getting health alert');
+    res.end(JSON.stringify({ 'health_alert':health_alert_flag }));
+});
+
 // Запускаем сервер
 let port = 80;
 app.listen(port);
 console.log("Server works on port " + port);
-
