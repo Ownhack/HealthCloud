@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Kolotovkin Maxim
+MAINTAINER Owncraft
 
 RUN apt-get -y update
 ENV PGVER 9.5
@@ -9,7 +9,7 @@ RUN apt-get install -y postgresql-$PGVER
 # postgres
 USER postgres
 RUN /etc/init.d/postgresql start &&\
-    psql --command "ALTER USER postgres WITH SUPERUSER PASSWORD '12345';" &&\
+    psql --command "ALTER USER postgres WITH SUPERUSER PASSWORD '43926';" &&\
     createdb -E utf8 -T template0 -O postgres my_database &&\
     /etc/init.d/postgresql stop
 
